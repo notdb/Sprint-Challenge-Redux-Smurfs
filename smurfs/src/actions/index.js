@@ -36,7 +36,7 @@ export const addSmurf = smurf => dispatch => {
     })
     .catch(err => {
       console.log(err);
-      dispatch({ ADD_SMURF_ERROR, payload: err });
+      dispatch({ type: ADD_SMURF_ERROR, payload: err });
     });
 };
 
