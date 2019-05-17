@@ -1,12 +1,20 @@
 /*
   Be sure to import in all of the action types from `../actions`
 */
-import { SMURF_START, SMURF_SUCCESS, SMURF_ERROR } from "../actions";
+import {
+  SMURF_START,
+  SMURF_SUCCESS,
+  SMURF_ERROR,
+  ADD_SMURF_START,
+  ADD_SMURF_SUCCESS,
+  ADD_SMURF_ERROR
+} from "../actions";
 
 const initialState = {
   smurfs: [],
   fetchingSmurfs: false,
-  error: ""
+  error: "",
+  adding_smurfs: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +35,24 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingSmurfs: false,
+        error: action.payload
+      };
+    case ADD_SMURF_START:
+      return {
+        ...state,
+        adding_smurf: true,
+        error: ""
+      };
+    case ADD_SMURF_SUCCESS:
+      return {
+        ...state,
+        adding_smurf: false,
+        smurfs: action.payload
+      };
+    case ADD_SMURF_ERROR:
+      return {
+        ...state,
+        adding_smurf: false,
         error: action.payload
       };
     default:
