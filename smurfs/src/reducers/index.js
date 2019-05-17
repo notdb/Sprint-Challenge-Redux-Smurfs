@@ -1,6 +1,40 @@
 /*
   Be sure to import in all of the action types from `../actions`
 */
+import { SMURF_START, SMURF_SUCCESS, SMURF_ERROR } from "../actions";
+
+const initialState = {
+  smurfs: [],
+  fetchingSmurfs: false,
+  error: ""
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SMURF_START:
+      return {
+        ...state,
+        fetchingSmurfs: true,
+        error: ""
+      };
+    case SMURF_SUCCESS:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        smurfs: action.payload
+      };
+    case SMURF_ERROR:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+export default reducer;
 
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
